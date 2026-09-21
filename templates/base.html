@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Cinema Booking{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+</head>
+<body class="bg-cinema-bg text-gray-800 font-sans antialiased overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-12">
+                <div class="flex items-center">
+                    <a href="/" class="flex-shrink-0 flex items-center gap-2">
+                        <svg class="h-8 w-8 text-cinema-blue drop-shadow-sm" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
+                        </svg>
+                        <span id="nav-brand" class="font-bold text-2xl tracking-tight text-white transition-colors duration-300">TIX<span class="text-cinema-yellow">NOW</span></span>
+                    </a>
+                </div>
+                
+                <div class="flex-1 flex justify-center px-2 lg:ml-6 lg:justify-end">
+                    <div class="max-w-lg w-full lg:max-w-md relative transition-transform duration-300 group">
+                        <label for="search" class="sr-only">Cari Film...</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-gray-400 group-focus-within:text-cinema-blue transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                            </div>
+                            <input id="search" name="search" autocomplete="off" class="block w-full pl-11 pr-4 py-2.5 border border-white/20 rounded-full leading-5 bg-white/10 backdrop-blur-md text-white placeholder-gray-300 focus:outline-none focus:bg-white focus:text-gray-900 focus:placeholder-gray-500 focus:ring-2 focus:ring-cinema-blue sm:text-sm shadow-sm transition-all duration-300" placeholder="Cari judul film..." type="search">
+                            <!-- Dropdown -->
+                            <div id="search-results" class="absolute mt-2 w-full bg-white rounded-xl shadow-xl overflow-hidden hidden z-50 border border-gray-100 max-h-80 overflow-y-auto"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center lg:ml-6 gap-4">
+                    {% if session.get('user_id') %}
+                        <span class="text-sm font-medium text-white transition-colors duration-300" id="nav-user">Halo, {{ session.get('user_name') }}</span>
+                        {% if session.get('user_role') == 'customer' %}
+                            <a href="{{ url_for('order_history') }}" id="nav-history" class="px-4 py-2 text-sm font-medium rounded-full text-white bg-white/20 hover:bg-white/30 transition-colors flex items-center gap-2 backdrop-blur-sm border border-white/10">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                Riwayat
+                            </a>
+                        {% endif %}
+                        <a href="{{ url_for('logout') }}" class="px-5 py-2.5 text-sm font-medium rounded-full text-white bg-red-500 hover:bg-red-600 transition-colors shadow-lg shadow-red-500/30">Logout</a>
+                    {% else %}
+                        <a href="{{ url_for('login') }}" id="nav-login" class="text-sm font-medium text-white hover:text-cinema-yellow transition-colors duration-300">Login</a>
+                        <a href="{{ url_for('register') }}" class="px-5 py-2.5 text-sm font-medium rounded-full text-white bg-cinema-blue hover:bg-cinema-blue-dark transition-colors shadow-lg shadow-cinema-blue/30">Daftar</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="min-h-screen">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 mt-16 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-2">
+                    <svg class="h-6 w-6 text-cinema-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
+                    </svg>
+                    <span class="font-bold text-xl tracking-tight text-cinema-blue-dark">TIX<span class="text-cinema-yellow">NOW</span></span>
+                </div>
+                <div class="flex space-x-8 text-sm font-medium text-gray-500">
+                    <a href="#" class="hover:text-cinema-blue transition-colors">Tentang Kami</a>
+                    <a href="#" class="hover:text-cinema-blue transition-colors">Bantuan</a>
+                    <a href="#" class="hover:text-cinema-blue transition-colors">Syarat & Ketentuan</a>
+                    <a href="#" class="hover:text-cinema-blue transition-colors">Kebijakan Privasi</a>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-100 flex justify-between items-center text-sm text-gray-400">
+                <p>&copy; 2026 TixNow Cinema Booking. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <!-- Dummy socmed icons -->
+                    <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-cinema-blue hover:text-white transition-colors cursor-pointer">IG</div>
+                    <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-cinema-blue hover:text-white transition-colors cursor-pointer">X</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        // Auto-hide flash messages
+        setTimeout(() => {
+            const flashes = document.querySelectorAll('.fixed.top-20 > div');
+            flashes.forEach(f => {
+                f.style.transition = "opacity 0.5s ease-out";
+                f.style.opacity = "0";
+                setTimeout(() => f.remove(), 500);
+            });
+        }, 3000);
+
+        // Search Autocomplete
+        const searchInput = document.getElementById('search');
+        const searchResults = document.getElementById('search-results');
+
+        if(searchInput && searchResults) {
+            let timeout = null;
+            searchInput.addEventListener('input', (e) => {
+                clearTimeout(timeout);
+                const query = e.target.value.trim();
+                
+                if(query.length < 2) {
+                    searchResults.classList.add('hidden');
+                    return;
+                }
+
+                timeout = setTimeout(() => {
+                    fetch(`/api/search?q=${encodeURIComponent(query)}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        searchResults.innerHTML = '';
+                        if(data.length > 0) {
+                            data.forEach(movie => {
+                                // Highlight query
+                                const regex = new RegExp(`(${query})`, "gi");
+                                const highlightedTitle = movie.title.replace(regex, "<span class='bg-yellow-200 text-cinema-blue-dark font-bold'>$1</span>");
+                                
+                                const a = document.createElement('a');
+                                a.href = `/movie/${movie.id}`;
+                                a.className = "flex items-center gap-4 p-3 hover:bg-gray-50 transition-colors border-b border-gray-50 last:border-0";
+                                a.innerHTML = `
+                                    <img src="${movie.img}" class="w-10 h-14 object-cover rounded shadow-sm">
+                                    <div>
+                                        <p class="font-bold text-gray-900 text-sm">${highlightedTitle}</p>
+                                        <p class="text-xs text-gray-500">${movie.genre}</p>
+                                    </div>
+                                `;
+                                searchResults.appendChild(a);
+                            });
+                            searchResults.classList.remove('hidden');
+                        } else {
+                            searchResults.innerHTML = `<div class="p-4 text-sm text-gray-500 text-center">Tidak ditemukan.</div>`;
+                            searchResults.classList.remove('hidden');
+                        }
+                    });
+                }, 300);
+            });
+
+            // Hide dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if(!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                    searchResults.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireframe - TixNow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif; }
+        .wf-container { border: 2px solid #374151; background: white; margin-bottom: 3rem; box-shadow: 8px 8px 0px #9ca3af; border-radius: 8px; overflow: hidden; }
+        .wf-header { border-bottom: 2px solid #374151; padding: 1rem; display: flex; justify-content: space-between; align-items: center; background: #f3f4f6; }
+        .wf-box { border: 2px dashed #9ca3af; background-color: #f9fafb; display: flex; align-items: center; justify-content: center; color: #6b7280; font-size: 0.875rem; text-align: center; }
+        .wf-text-line { height: 0.75rem; background-color: #d1d5db; border-radius: 4px; margin-bottom: 0.5rem; }
+        .wf-text-line.short { width: 60%; }
+        .wf-text-line.long { width: 90%; }
+        .wf-btn { border: 2px solid #374151; background-color: #e5e7eb; padding: 0.5rem 1rem; border-radius: 9999px; text-align: center; font-weight: bold; }
+        .wf-input { border: 2px solid #9ca3af; border-radius: 9999px; padding: 0.5rem 1rem; width: 100%; }
+        
+        .wf-seat { width: 30px; height: 30px; border: 2px solid #374151; border-radius: 6px 6px 0 0; }
+        .wf-seat.sold { background: #d1d5db; }
+        .wf-seat.selected { background: #4b5563; border-color: #4b5563; }
+        .wf-screen { border-top: 4px solid #374151; border-radius: 50% 50% 0 0 / 10px 10px 0 0; height: 20px; width: 80%; margin: 0 auto 20px; text-align: center; font-size: 10px; }
+    </style>
+</head>
+<body class="bg-gray-200 p-8">
+
+    <div class="max-w-5xl mx-auto">
+        <h1 class="text-4xl font-bold mb-2 text-center text-gray-800">TIXNOW - UI Wireframes</h1>
+        <p class="text-center text-gray-600 mb-10">Buka file ini di browser lalu gunakan fitur screenshot / capture untuk laporan Anda.</p>
+
+        <!-- 1. HOME PAGE -->
+        <h2 class="text-2xl font-bold mb-4 text-gray-700">1. Halaman Beranda (Home)</h2>
+        <div class="wf-container">
+            <!-- Navbar -->
+            <div class="wf-header">
+                <div class="font-bold text-xl">TIXNOW</div>
+                <div class="w-1/3">
+                    <div class="wf-input text-gray-400 text-sm">Cari judul film...</div>
+                </div>
+                <div class="flex gap-4 items-center">
+                    <div class="text-sm">Login</div>
+                    <div class="wf-btn text-sm">Daftar</div>
+                </div>
+            </div>
+            
+            <div class="p-6 space-y-8">
+                <!-- Hero Section -->
+                <div class="wf-box h-64 w-full rounded-xl flex flex-col justify-end items-start p-8">
+                    <div class="wf-text-line h-6 w-1/3 mb-4 bg-gray-400"></div>
+                    <div class="wf-text-line short bg-gray-300"></div>
+                    <div class="wf-text-line short bg-gray-300"></div>
+                    <div class="wf-btn mt-4 w-32">Beli Tiket</div>
+                </div>
+
+                <!-- Now Playing -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Sedang Tayang</h3>
+                    <div class="grid grid-cols-4 gap-6">
+                        <!-- Movie Card 1 -->
+                        <div class="border-2 border-gray-300 p-3 rounded-lg">
+                            <div class="wf-box h-48 w-full rounded mb-3">Poster Image</div>
+                            <div class="font-bold text-sm mb-1">Judul Film 1</div>
+                            <div class="text-xs text-gray-500 mb-3">Genre • Durasi</div>
+                            <div class="wf-btn text-xs w-full">Detail</div>
+                        </div>
+                        <!-- Movie Card 2 -->
+                        <div class="border-2 border-gray-300 p-3 rounded-lg">
+                            <div class="wf-box h-48 w-full rounded mb-3">Poster Image</div>
+                            <div class="font-bold text-sm mb-1">Judul Film 2</div>
+                            <div class="text-xs text-gray-500 mb-3">Genre • Durasi</div>
+                            <div class="wf-btn text-xs w-full">Detail</div>
+                        </div>
+                        <!-- Movie Card 3 -->
+                        <div class="border-2 border-gray-300 p-3 rounded-lg">
+                            <div class="wf-box h-48 w-full rounded mb-3">Poster Image</div>
+                            <div class="font-bold text-sm mb-1">Judul Film 3</div>
+                            <div class="text-xs text-gray-500 mb-3">Genre • Durasi</div>
+                            <div class="wf-btn text-xs w-full">Detail</div>
+                        </div>
+                        <!-- Movie Card 4 -->
+                        <div class="border-2 border-gray-300 p-3 rounded-lg">
+                            <div class="wf-box h-48 w-full rounded mb-3">Poster Image</div>
+                            <div class="font-bold text-sm mb-1">Judul Film 4</div>
+                            <div class="text-xs text-gray-500 mb-3">Genre • Durasi</div>
+                            <div class="wf-btn text-xs w-full">Detail</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="border-t-2 border-gray-300 p-6 flex justify-between text-sm text-gray-500 bg-gray-50">
+                <div class="font-bold text-gray-700">TIXNOW</div>
+                <div class="flex gap-4">
+                    <span>Tentang Kami</span>
+                    <span>Bantuan</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. LOGIN / REGISTER PAGE -->
+        <h2 class="text-2xl font-bold mb-4 text-gray-700">2. Halaman Login / Register</h2>
+        <div class="wf-container max-w-2xl mx-auto">
+            <div class="wf-header justify-center">
+                <div class="font-bold text-xl">TIXNOW - Akses Akun</div>
+            </div>
+            <div class="p-8 flex flex-col items-center">
+                <h3 class="text-2xl font-bold mb-6">Masuk ke Akun Anda</h3>
+                
+                <div class="w-full max-w-sm space-y-4">
+                    <div>
+                        <div class="text-sm font-bold mb-1">Email</div>
+                        <div class="wf-input text-gray-400">Contoh: user@email.com</div>
+                    </div>
+                    <div>
+                        <div class="text-sm font-bold mb-1">Password</div>
+                        <div class="wf-input text-gray-400">••••••••</div>
+                    </div>
+                    
+                    <div class="flex justify-between items-center text-sm">
+                        <div><input type="checkbox" class="mr-1"> Ingat saya</div>
+                        <div class="text-gray-500 underline">Lupa Password?</div>
+                    </div>
+                    
+                    <div class="wf-btn w-full mt-4 bg-gray-800 text-white border-gray-800">Masuk</div>
+                    
+                    <div class="text-center text-sm mt-4">
+                        Belum punya akun? <span class="font-bold underline">Daftar sekarang</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. BOOKING PAGE (Seat Selection) -->
+        <h2 class="text-2xl font-bold mb-4 text-gray-700">3. Halaman Pemesanan (Pilih Kursi)</h2>
+        <div class="wf-container">
+            <div class="wf-header">
+                <div class="font-bold text-xl">TIXNOW</div>
+                <div class="flex gap-4 items-center">
+                    <div class="text-sm">Halo, User</div>
+                    <div class="wf-btn text-sm">Riwayat</div>
+                </div>
+            </div>
+            
+            <div class="p-6 flex gap-8">
+                <!-- Left: Seat Map -->
+                <div class="flex-1 border-2 border-gray-300 p-6 rounded-xl">
+                    <h3 class="font-bold text-lg mb-6 text-center">Pilih Kursi - Studio 1</h3>
+                    
+                    <div class="wf-screen text-gray-500">Layar Bioskop</div>
+                    
+                    <div class="flex flex-col items-center gap-2 mt-8">
+                        <!-- Rows -->
+                        <div class="flex gap-8">
+                            <!-- Left Block -->
+                            <div class="flex gap-2">
+                                <div class="wf-seat"></div>
+                                <div class="wf-seat sold"></div>
+                                <div class="wf-seat"></div>
+                            </div>
+                            <!-- Center Block -->
+                            <div class="flex gap-2">
+                                <div class="wf-seat selected"></div>
+                                <div class="wf-seat selected"></div>
+                                <div class="wf-seat"></div>
+                                <div class="wf-seat"></div>
+                            </div>
+                            <!-- Right Block -->
+                            <div class="flex gap-2">
+                                <div class="wf-seat"></div>
+                                <div class="wf-seat sold"></div>
+                                <div class="wf-seat"></div>
+                            </div>
+                        </div>
+                        <div class="flex gap-8">
+                            <div class="flex gap-2"><div class="wf-seat"></div><div class="wf-seat"></div><div class="wf-seat"></div></div>
+                            <div class="flex gap-2"><div class="wf-seat"></div><div class="wf-seat"></div><div class="wf-seat"></div><div class="wf-seat"></div></div>
+                            <div class="flex gap-2"><div class="wf-seat"></div><div class="wf-seat"></div><div class="wf-seat"></div></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Legend -->
+                    <div class="flex justify-center gap-6 mt-10 text-sm">
+                        <div class="flex items-center gap-2"><div class="wf-seat"></div> Tersedia</div>
+                        <div class="flex items-center gap-2"><div class="wf-seat selected"></div> Dipilih</div>
+                        <div class="flex items-center gap-2"><div class="wf-seat sold"></div> Terjual</div>
+                    </div>
+                </div>
+                
+                <!-- Right: Summary -->
+                <div class="w-1/3 space-y-6">
+                    <div class="border-2 border-gray-300 p-6 rounded-xl">
+                        <div class="flex gap-4 mb-4">
+                            <div class="wf-box w-20 h-28 rounded">Poster</div>
+                            <div>
+                                <h4 class="font-bold text-lg">Judul Film</h4>
+                                <p class="text-sm text-gray-500">20:00 WIB • Hari Ini</p>
+                            </div>
+                        </div>
+                        
+                        <hr class="border-t-2 border-dashed border-gray-300 my-4">
+                        
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span>Bioskop:</span> <span class="font-bold">Grand Mall XXI</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Kursi:</span> <span class="font-bold">C4, C5</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Harga Tiket:</span> <span>Rp 50.000 x 2</span>
+                            </div>
+                        </div>
+                        
+                        <hr class="border-t-2 border-dashed border-gray-300 my-4">
+                        
+                        <div class="flex justify-between font-bold text-lg">
+                            <span>Total</span>
+                            <span>Rp 100.000</span>
+                        </div>
+                        
+                        <div class="wf-btn w-full mt-6 bg-gray-800 text-white border-gray-800">Lanjut Pembayaran</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. HISTORY PAGE -->
+        <h2 class="text-2xl font-bold mb-4 text-gray-700">4. Halaman Riwayat Pemesanan</h2>
+        <div class="wf-container">
+            <div class="wf-header">
+                <div class="font-bold text-xl">TIXNOW</div>
+                <div class="flex gap-4 items-center">
+                    <div class="text-sm">Halo, User</div>
+                    <div class="wf-btn text-sm">Riwayat</div>
+                </div>
+            </div>
+            
+            <div class="p-8">
+                <h3 class="text-2xl font-bold mb-6">Riwayat Tiket Saya</h3>
+                
+                <div class="space-y-4">
+                    <!-- Ticket 1 -->
+                    <div class="border-2 border-gray-300 p-4 rounded-xl flex justify-between items-center bg-white">
+                        <div class="flex gap-4">
+                            <div class="wf-box w-16 h-24 rounded">Poster</div>
+                            <div>
+                                <h4 class="font-bold text-lg">Judul Film 1</h4>
+                                <div class="text-sm text-gray-500 mb-1">Grand Mall XXI • Studio 1</div>
+                                <div class="text-sm font-bold">Kursi: C4, C5</div>
+                                <div class="text-xs text-gray-400 mt-2">Kode: TRX-12345</div>
+                            </div>
+                        </div>
+                        <div class="text-right flex flex-col items-end gap-2">
+                            <div class="px-3 py-1 border-2 border-green-500 text-green-600 rounded-full text-xs font-bold w-max">Lunas</div>
+                            <div class="wf-btn text-sm">Lihat Tiket</div>
+                        </div>
+                    </div>
+
+                    <!-- Ticket 2 -->
+                    <div class="border-2 border-gray-300 p-4 rounded-xl flex justify-between items-center bg-gray-50 opacity-80">
+                        <div class="flex gap-4">
+                            <div class="wf-box w-16 h-24 rounded">Poster</div>
+                            <div>
+                                <h4 class="font-bold text-lg">Judul Film 2</h4>
+                                <div class="text-sm text-gray-500 mb-1">City Center XXI • Studio 3</div>
+                                <div class="text-sm font-bold">Kursi: E1</div>
+                                <div class="text-xs text-gray-400 mt-2">Kode: TRX-54321</div>
+                            </div>
+                        </div>
+                        <div class="text-right flex flex-col items-end gap-2">
+                            <div class="px-3 py-1 border-2 border-yellow-500 text-yellow-600 rounded-full text-xs font-bold w-max">Pending</div>
+                            <div class="wf-btn text-sm">Bayar Sekarang</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. ADMIN PAGE -->
+        <h2 class="text-2xl font-bold mb-4 text-gray-700">5. Halaman Admin Dashboard</h2>
+        <div class="wf-container flex h-[500px]">
+            <!-- Sidebar -->
+            <div class="w-1/4 border-r-2 border-gray-300 bg-gray-50 flex flex-col justify-between">
+                <div>
+                    <div class="p-6 border-b-2 border-gray-300 font-bold text-xl text-center">TixNow Admin</div>
+                    <div class="p-4 space-y-2">
+                        <div class="wf-btn text-sm text-left w-full bg-gray-800 text-white border-gray-800 flex items-center gap-2">
+                            <div class="w-4 h-4 bg-white rounded-sm"></div> Kelola Film
+                        </div>
+                        <div class="wf-btn text-sm text-left w-full bg-transparent border-transparent text-gray-500 flex items-center gap-2">
+                            <div class="w-4 h-4 border-2 border-gray-400 rounded-sm"></div> Pesanan Masuk
+                        </div>
+                        <div class="wf-btn text-sm text-left w-full bg-transparent border-transparent text-gray-500 flex items-center gap-2">
+                            <div class="w-4 h-4 border-2 border-gray-400 rounded-sm"></div> Laporan
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 border-t-2 border-gray-300 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center font-bold text-sm">A</div>
+                        <div>
+                            <div class="text-sm font-bold">Admin</div>
+                            <div class="text-[10px] text-gray-500">Administrator</div>
+                        </div>
+                    </div>
+                    <div class="text-xs text-red-500 font-bold px-2 py-1 bg-red-100 rounded">Logout</div>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="w-3/4 p-6 flex flex-col bg-white">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h3 class="text-2xl font-bold">Kelola Film</h3>
+                        <p class="text-sm text-gray-500">Daftar film tayang dan ketersediaan kursi.</p>
+                    </div>
+                    <div class="wf-btn text-sm bg-gray-800 text-white border-gray-800">+ Tambah Film</div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-6 overflow-y-auto pr-2 pb-4">
+                    <!-- Movie Admin Card 1 -->
+                    <div class="border-2 border-gray-300 p-4 rounded-xl flex flex-col gap-4">
+                        <div class="flex gap-4">
+                            <div class="wf-box w-20 h-28 rounded flex-shrink-0">Poster</div>
+                            <div class="flex flex-col justify-center">
+                                <h4 class="font-bold text-md">Judul Film 1</h4>
+                                <p class="text-xs text-gray-500 mt-1">120 Menit • R</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs p-3 bg-gray-50 rounded-lg border-2 border-gray-200 text-center">
+                                <div><div class="text-[10px] text-gray-500 uppercase mb-1">Tersedia</div><div class="font-bold text-green-600 text-lg">50</div></div>
+                                <div class="w-px bg-gray-300"></div>
+                                <div><div class="text-[10px] text-gray-500 uppercase mb-1">Terjual</div><div class="font-bold text-red-600 text-lg">30</div></div>
+                                <div class="w-px bg-gray-300"></div>
+                                <div><div class="text-[10px] text-gray-500 uppercase mb-1">Total</div><div class="font-bold text-gray-700 text-lg">80</div></div>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <div class="wf-btn text-sm w-full py-2 bg-blue-50 text-blue-600 border-blue-200">Edit</div>
+                            <div class="wf-btn text-sm w-full py-2 bg-red-50 text-red-600 border-red-200">Hapus</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Movie Admin Card 2 -->
+                    <div class="border-2 border-gray-300 p-4 rounded-xl flex flex-col gap-4">
+                        <div class="flex gap-4">
+                            <div class="wf-box w-20 h-28 rounded flex-shrink-0">Poster</div>
+                            <div class="flex flex-col justify-center">
+                                <h4 class="font-bold text-md">Judul Film 2</h4>
+                                <p class="text-xs text-gray-500 mt-1">105 Menit • SU</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs p-3 bg-gray-50 rounded-lg border-2 border-gray-200 text-center">
+                                <div><div class="text-[10px] text-gray-500 uppercase mb-1">Tersedia</div><div class="font-bold text-green-600 text-lg">10</div></div>
+                                <div class="w-px bg-gray-300"></div>
+                                <div><div class="text-[10px] text-gray-500 uppercase mb-1">Terjual</div><div class="font-bold text-red-600 text-lg">110</div></div>
+                                <div class="w-px bg-gray-300"></div>
+                                <div><div class="text-[10px] text-gray-500 uppercase mb-1">Total</div><div class="font-bold text-gray-700 text-lg">120</div></div>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <div class="wf-btn text-sm w-full py-2 bg-blue-50 text-blue-600 border-blue-200">Edit</div>
+                            <div class="wf-btn text-sm w-full py-2 bg-red-50 text-red-600 border-red-200">Hapus</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block title %}{{ movie.title }} | TixNow Cinema{% endblock %}
+
+{% block content %}
+<!-- Movie Hero Background -->
+<section class="relative w-full h-[60vh] min-h-[400px]">
+    <div class="absolute inset-0 bg-gray-900">
+        <img src="{{ movie.img }}" alt="{{ movie.title }}" class="w-full h-full object-cover opacity-30">
+        <div class="absolute inset-0 bg-gradient-to-t from-cinema-bg via-cinema-bg/80 to-transparent"></div>
+    </div>
+</section>
+
+<!-- Movie Details Container -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative -mt-64 z-10">
+    <div class="flex flex-col md:flex-row gap-8">
+        <!-- Poster Thumbnail -->
+        <div class="w-48 md:w-64 flex-shrink-0 mx-auto md:mx-0">
+            <div class="rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+                <img src="{{ movie.img }}" alt="{{ movie.title }} Poster" class="w-full h-auto object-cover">
+            </div>
+        </div>
+
+        <!-- Info -->
+        <div class="flex-1 flex flex-col justify-end pb-4 text-center md:text-left">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-cinema-blue-dark mb-4 drop-shadow-sm">{{ movie.title }}</h1>
+            
+            <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 mb-6">
+                <!-- Rating Badge -->
+                <span class="px-3 py-1 text-sm font-bold text-white rounded-md shadow-sm
+                    {% if movie.rating == 'D' %} bg-rating-d
+                    {% elif movie.rating == 'R' %} bg-rating-r
+                    {% else %} bg-rating-su {% endif %}">
+                    {{ movie.rating }}
+                </span>
+                
+                <div class="flex items-center text-gray-600 font-medium text-sm">
+                    <svg class="w-4 h-4 mr-1 text-cinema-yellow" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
+                    {{ movie.duration }}
+                </div>
+                
+                <span class="text-gray-400">•</span>
+                <span class="text-gray-600 font-medium text-sm">{{ movie.genre }}</span>
+            </div>
+
+            <div class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-sm border border-gray-100 mb-8 max-w-3xl">
+                <h3 class="text-lg font-bold text-gray-900 mb-2">Sinopsis</h3>
+                <p class="text-gray-600 leading-relaxed">{{ movie.synopsis }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Jadwal & Lokasi -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="bg-white rounded-3xl shadow-lg border border-gray-100 p-8">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 border-b border-gray-100 pb-6">
+            <h2 class="text-2xl font-bold text-gray-900 border-l-4 border-cinema-yellow pl-3">Jadwal Tayang</h2>
+            
+            <div class="flex items-center gap-3 w-full md:w-auto">
+                <select class="block w-full md:w-48 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-cinema-blue focus:border-cinema-blue sm:text-sm rounded-xl bg-gray-50">
+                    <option>Jakarta</option>
+                    <option>Bandung</option>
+                    <option>Surabaya</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="space-y-6">
+            {% for cinema in movie.cinemas %}
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center p-6 border border-gray-100 rounded-2xl hover:border-cinema-blue/30 hover:bg-blue-50/30 transition-colors">
+                <div class="mb-4 md:mb-0">
+                    <h4 class="text-xl font-bold text-cinema-blue-dark flex items-center gap-2">
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        {{ cinema }}
+                    </h4>
+                    <p class="text-sm text-gray-500 mt-1 ml-7">Harga: Rp 50.000 / Tiket</p>
+                </div>
+                
+                <div class="w-full md:w-auto flex flex-col items-end gap-3">
+                    <form action="{{ url_for('book', movie_id=movie.id) }}" method="GET" class="w-full flex flex-col items-end gap-3">
+                        <input type="hidden" name="cinema" value="{{ cinema }}">
+                        
+                        <div class="flex flex-wrap justify-end gap-2">
+                            {% for st in movie.showtimes %}
+                            <label class="cursor-pointer">
+                                <input type="radio" name="showtime" value="{{ st }}" required class="peer sr-only">
+                                <span class="px-4 py-2 block text-sm font-medium border border-gray-200 rounded-lg text-gray-700 peer-checked:bg-cinema-blue peer-checked:text-white peer-checked:border-cinema-blue hover:bg-gray-50 transition-colors shadow-sm">
+                                    {{ st }}
+                                </span>
+                            </label>
+                            {% endfor %}
+                        </div>
+                        
+                        <button type="submit" class="mt-2 px-6 py-2.5 bg-cinema-yellow text-cinema-blue-dark font-bold rounded-xl shadow-md hover:bg-cinema-yellow-dark hover:text-white transition-all transform hover:-translate-y-0.5 w-full md:w-auto">
+                            Pilih Kursi & Pesan
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Rating & Review Section -->
+<section id="review-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="bg-white rounded-3xl shadow-lg border border-gray-100 p-8">
+        <h2 class="text-2xl font-bold text-gray-900 border-l-4 border-cinema-yellow pl-3 mb-6">Ulasan & Rating ({{ "%.1f"|format(avg_rating) if avg_rating else "0" }}/5)</h2>
+        
+        {% if can_review %}
+        <div class="mb-8 bg-gray-50 p-6 rounded-2xl border border-gray-100">
+            <h3 class="font-bold text-lg mb-4 text-cinema-blue-dark">Berikan Ulasan Anda</h3>
+            <form action="{{ url_for('add_review', movie_id=movie.id) }}" method="POST" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-2">Rating</label>
+                    <select name="rating" required class="w-full md:w-48 pl-3 pr-10 py-2 text-base border-gray-300 border focus:outline-none focus:ring-2 focus:ring-cinema-blue focus:border-transparent sm:text-sm rounded-xl">
+                        <option value="5">5 - Sangat Bagus</option>
+                        <option value="4">4 - Bagus</option>
+                        <option value="3">3 - Lumayan</option>
+                        <option value="2">2 - Kurang</option>
+                        <option value="1">1 - Sangat Kurang</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-2">Ulasan</label>
+                    <textarea name="review_text" rows="3" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-cinema-blue focus:border-transparent outline-none resize-none" placeholder="Bagaimana pendapat Anda tentang film ini?"></textarea>
+                </div>
+                <button type="submit" class="px-6 py-2.5 bg-cinema-blue text-white font-bold rounded-xl shadow-md hover:bg-cinema-blue-dark transition-all">Kirim Ulasan</button>
+            </form>
+        </div>
+        {% endif %}
+
+        <div class="space-y-6">
+            {% if reviews %}
+                {% for review in reviews %}
+                <div class="border-b border-gray-100 pb-6 last:border-0 last:pb-0">
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="font-bold text-gray-900">{{ review.user_name }}</h4>
+                        <div class="flex text-cinema-yellow text-sm">
+                            {% for i in range(review.rating) %}★{% endfor %}
+                            {% for i in range(5 - review.rating) %}<span class="text-gray-300">★</span>{% endfor %}
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-1">{{ review.review_text }}</p>
+                    <span class="text-xs text-gray-400">{{ review.date }}</span>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="text-gray-500 text-center py-4 italic">Belum ada ulasan untuk film ini.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
