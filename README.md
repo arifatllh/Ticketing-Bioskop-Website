@@ -1,3 +1,4 @@
+{% raw %}
 # Dokumentasi Website Ticketing Bioskop
 
 Dokumentasi ini menjelaskan secara rinci tentang teknologi yang digunakan dalam proyek website pemesanan tiket bioskop ini, serta panduan untuk melihat isi database.
@@ -53,3 +54,4 @@ Jika Anda tidak ingin menginstall apapun dan hanya ingin melihat di browser:
 1. Buka website: [https://sqliteviewer.app/](https://sqliteviewer.app/)
 2. Tarik (*drag and drop*) file `cinema.db` dari folder proyek Anda ke halaman web tersebut.
 3. Anda bisa langsung melihat semua tabel dan data di dalam browser Anda dengan aman (data tidak diupload ke server mereka, hanya dibaca di browser Anda).
+{% endraw %}
